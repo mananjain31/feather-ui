@@ -1,0 +1,5 @@
+dev/
+vite.config.ts
+index.html
+tsconfig.tsbuildinfo
+.vscode/
