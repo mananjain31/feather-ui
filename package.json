@@ -22,8 +22,14 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "./tailwind.preset.js"
   ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./tailwind.preset": "./tailwind.preset.js",
+    "./styles.css": "./dist/index.css"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "dev": "vite",
@@ -33,7 +39,9 @@
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
-    "tailwindcss": "^3.0.0"
+    "tailwindcss": "^3.0.0",
+    "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/typography": "^0.5.0"
   },
   "dependencies": {
     "clsx": "^2.0.0"

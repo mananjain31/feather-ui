@@ -1,22 +1,36 @@
 import React from "react";
 import clsx from "clsx";
 
-type Props = {
-  children: React.ReactNode;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary";
-  onClick?: () => void;
 };
 
-export const Button = ({ children, variant = "primary", onClick }: Props) => {
+export const Button: React.FC<ButtonProps> = ({
+  children,
+  variant = "primary",
+  className,
+  style,
+  ...rest
+}) => {
+  function getBtnStyle(variant: string): string {
+    switch (variant) {
+      case "primary":
+        return "btn-primary";
+      case "secondary":
+        return "btn-secondary";
+      default:
+        return "btn";
+    }
+  }
+
   return (
     <button
       className={clsx(
-        "px-4 py-2 rounded font-semibold transition-colors duration-200",
-        variant === "primary"
-          ? "bg-blue-600 text-white hover:bg-blue-700"
-          : "bg-gray-200 text-black hover:bg-gray-300"
+        getBtnStyle(variant),
+        className // allow overrides/additions,
       )}
-      onClick={onClick}
+      style={style}
+      {...rest}
     >
       {children}
     </button>
